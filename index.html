@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Al Safa 2 Park — The Threshold Park</title>
+<meta name="description" content="Concept and preliminary design for Al Safa 2 Park, Dubai: an entry to Dubai Municipality's AI-Powered Park Design Challenge (2026) by Assim Ben Ahmed.">
+<meta property="og:title" content="Al Safa 2 Park — The Threshold Park">
+<meta property="og:description" content="A 14,841 m² neighbourhood park redesigned from verified site data: five zones, shade-compliant playgrounds, and an AI workflow where every output was checked.">
+<meta property="og:image" content="assets/img/evening-commons.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f0;
+    --surface: #ffffff;
+    --sand: #efe7d6;
+    --ink: #1f2a24;
+    --muted: #5d675f;
+    --line: #e2d9c6;
+    --green: #2f6b4f;
+    --green-soft: #e3efe7;
+    --amber: #b7791f;
+    --amber-soft: #f7ecd7;
+    --red: #a8432f;
+    --radius: 14px;
+    --shadow: 0 1px 2px rgb(31 42 36 / 0.06), 0 8px 24px -12px rgb(31 42 36 / 0.18);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121713;
+      --surface: #1a211c;
+      --sand: #1f2721;
+      --ink: #e9ece6;
+      --muted: #a5aea6;
+      --line: #2e3830;
+      --green: #7cc19c;
+      --green-soft: #1f3328;
+      --amber: #e3b260;
+      --amber-soft: #3a2f1b;
+      --red: #e08b77;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 1rem/1.65 Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { max-width: 100%; height: auto; display: block; }
+  a { color: var(--green); }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; line-height: 1.15; margin: 0; }
+  h2 { font-size: clamp(1.6rem, 3.2vw, 2.25rem); }
+  h3 { font-size: 1.15rem; }
+  p { margin: 0; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 28px; } }
+
+  /* Nav */
+  nav.top {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .wrap { display: flex; align-items: center; gap: 20px; height: 56px; overflow-x: auto; scrollbar-width: none; }
+  nav.top .wrap::-webkit-scrollbar { display: none; }
+  nav.top strong { font-family: Fraunces, Georgia, serif; white-space: nowrap; }
+  nav.top a { color: var(--muted); text-decoration: none; font-size: 0.9rem; white-space: nowrap; }
+  nav.top a:hover { color: var(--ink); }
+  nav.top .links { display: flex; gap: 18px; margin-left: auto; }
+
+  /* Hero */
+  .hero { position: relative; color: #fff; }
+  .hero img { width: 100%; height: min(78vh, 680px); object-fit: cover; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 0 0 / 0.05) 30%, rgb(10 18 13 / 0.82)); }
+  .hero .wrap { position: absolute; inset: auto 0 0 0; z-index: 1; padding-bottom: 40px; }
+  .eyebrow { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; opacity: 0.9; }
+  .hero h1 { font-size: clamp(2.2rem, 6vw, 4.2rem); margin: 10px 0 12px; }
+  .hero p.lead { font-size: clamp(1.02rem, 1.8vw, 1.25rem); max-width: 720px; opacity: 0.95; }
+  .hero .byline { margin-top: 16px; font-size: 0.9rem; opacity: 0.85; }
+  .hero .byline a { color: #fff; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: -28px; position: relative; z-index: 2; }
+  @media (min-width: 760px) { .stats { grid-template-columns: repeat(5, 1fr); } }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+  .stat b { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.55rem; font-weight: 650; color: var(--green); }
+  .stat span { font-size: 0.85rem; color: var(--muted); }
+
+  section { padding: 72px 0 0; scroll-margin-top: 56px; }
+  section:last-of-type { padding-bottom: 72px; }
+  .kicker { color: var(--amber); font-weight: 600; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .intro { max-width: 760px; margin-top: 14px; color: var(--muted); font-size: 1.05rem; }
+  .grid2 { display: grid; gap: 28px; margin-top: 32px; }
+  @media (min-width: 880px) { .grid2 { grid-template-columns: 1fr 1fr; align-items: start; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  figure { margin: 0; }
+  figure img { border-radius: var(--radius); border: 1px solid var(--line); background: #fff; }
+  figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+  .table-scroll { overflow-x: auto; margin-top: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .table-scroll table { min-width: 560px; }
+  .table-scroll tr:last-child td { border-bottom: 0; }
+  .table-scroll.facts table { min-width: 0; }
+  .table-scroll.facts th { width: 30%; }
+
+  ul.clean { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  ul.clean li { padding-left: 26px; position: relative; }
+  ul.clean li::before { content: ''; position: absolute; left: 4px; top: 0.6em; width: 10px; height: 10px; border-radius: 3px; background: var(--green); }
+
+  /* Video */
+  .video { margin-top: 28px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: #000; }
+  .video video { width: 100%; aspect-ratio: 16 / 9; }
+
+  /* Concepts */
+  .concepts { display: grid; gap: 16px; margin-top: 28px; }
+  @media (min-width: 760px) { .concepts { grid-template-columns: repeat(3, 1fr); } }
+  .concept { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .concept img { border: 0; border-radius: 0; background: #fff; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; padding: 12px; }
+  .concept .body { padding: 16px; display: grid; gap: 8px; }
+  .score { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+  .bar { flex: 1; height: 8px; border-radius: 99px; background: var(--sand); overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--muted); }
+  .concept.chosen { border-color: var(--green); box-shadow: 0 0 0 1px var(--green); }
+  .concept.chosen .bar i { background: var(--green); }
+  .concept p { font-size: 0.92rem; color: var(--muted); }
+  .badge { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: var(--green-soft); color: var(--green); }
+
+  /* Zones */
+  .zones { display: grid; gap: 12px; margin-top: 24px; }
+  @media (min-width: 760px) { .zones { grid-template-columns: repeat(5, 1fr); } }
+  .zone { border-radius: var(--radius); padding: 16px; border: 1px solid var(--line); background: var(--surface); border-top: 5px solid var(--c); }
+  .zone h3 { font-size: 1rem; }
+  .zone small { color: var(--muted); font-weight: 600; }
+  .zone p { font-size: 0.88rem; color: var(--muted); margin-top: 6px; }
+
+  /* Land use */
+  .landuse { display: flex; height: 34px; border-radius: 10px; overflow: hidden; margin-top: 12px; font-size: 0.8rem; font-weight: 600; color: #fff; }
+  .landuse div { display: grid; place-items: center; }
+
+  /* Gallery */
+  .gallery { display: grid; gap: 14px; margin-top: 28px; }
+  @media (min-width: 760px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+  .gallery figure.wide { grid-column: 1 / -1; }
+  .gallery img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .gallery .wide img { aspect-ratio: auto; }
+
+  /* Personas */
+  .personas { display: grid; gap: 12px; margin-top: 24px; }
+  @media (min-width: 760px) { .personas { grid-template-columns: repeat(5, 1fr); } }
+  .persona { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+  .persona b { font-family: Fraunces, Georgia, serif; font-size: 1.05rem; }
+  .persona small { display: block; color: var(--amber); font-weight: 600; margin: 2px 0 8px; }
+  .persona p { font-size: 0.88rem; color: var(--muted); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .tag { font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 99px; }
+  .tag.ok { background: var(--green-soft); color: var(--green); }
+  .tag.inf { background: var(--amber-soft); color: var(--amber); }
+  .tag.gap { background: color-mix(in srgb, var(--red) 15%, transparent); color: var(--red); }
+
+  .sections-fig { display: grid; gap: 14px; margin-top: 24px; }
+  .sections-fig img { padding: 6px; }
+
+  /* Deliverables */
+  .docs { display: grid; gap: 10px; margin-top: 24px; }
+  @media (min-width: 760px) { .docs { grid-template-columns: repeat(2, 1fr); } }
+  .docs a { display: flex; gap: 14px; align-items: center; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-decoration: none; color: var(--ink); }
+  .docs a:hover { border-color: var(--green); }
+  .docs .n { font-family: Fraunces, Georgia, serif; font-weight: 650; color: var(--green); min-width: 26px; }
+  .docs .meta { margin-left: auto; font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 0.88rem; }
+  footer .wrap { display: grid; gap: 8px; }
+  .note { font-size: 0.85rem; color: var(--muted); margin-top: 14px; }
+  :focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <strong>Al Safa 2 Park</strong>
+    <div class="links">
+      <a href="#film">Film</a>
+      <a href="#site">Site</a>
+      <a href="#concept">Concept</a>
+      <a href="#masterplan">Masterplan</a>
+      <a href="#experience">Experience</a>
+      <a href="#ai">AI method</a>
+      <a href="#deliverables">Deliverables</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <img src="assets/img/evening-commons.jpg" alt="Central Green Commons in the evening: families on the lawn under lit shade sails (AI render)" width="1243" height="678">
+  <div class="wrap">
+    <div class="eyebrow">Dubai Municipality · AI-Powered Park Design Challenge · 2026</div>
+    <h1>The Threshold Park</h1>
+    <p class="lead">A concept and preliminary design for Al Safa 2 Park, a loved 14,841 m² neighbourhood park in Dubai, built from verified site data rather than park convention, with every AI output treated as a claim to check.</p>
+    <p class="byline">Solo entry by <a href="https://assim-ben-ahmed.github.io/portfolio/">Assim Ben Ahmed</a>, AI &amp; Data Science student at aivancity, Paris</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><b>14,841 m²</b><span>site area, geometrically confirmed</span></div>
+      <div class="stat"><b>5 zones</b><span>one per edge condition, plus the centre</span></div>
+      <div class="stat"><b>84%</b><span>of the 74 existing trees kept</span></div>
+      <div class="stat"><b>76.5% / 73.7%</b><span>shade over the two playgrounds (70–80% required)</span></div>
+      <div class="stat"><b>7</b><span>real errors caught by cross-checking</span></div>
+    </div>
+  </div>
+
+  <section id="film">
+    <div class="wrap">
+      <div class="kicker">Concept film</div>
+      <h2>A walk through the park</h2>
+      <div class="video">
+        <video controls preload="metadata" playsinline poster="assets/img/site-overview.jpg">
+          <source src="assets/video/concept-animation.mp4" type="video/mp4">
+          <a href="assets/video/concept-animation.mp4">Download the concept animation (MP4)</a>
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section id="site">
+    <div class="wrap">
+      <div class="kicker">1 · Site understanding</div>
+      <h2>Not a blank site: four edges, four neighbours</h2>
+      <p class="intro">Al Safa 2 is already used every day, surrounded by a school, a physiotherapy and rehabilitation centre, a mosque, shops and family homes. The finding that shaped every later decision: its four edges get measurably different sun, wind and neighbour exposure, verified by geodetic cross-referencing instead of assumed.</p>
+      <div class="grid2">
+        <figure>
+          <img src="assets/img/boundary-orientation.jpg" alt="Site boundary with true north, edge bearings, summer sunset, winter sunrise and the prevailing north-west shamal wind" loading="lazy" width="927" height="1056">
+          <figcaption>Confirmed boundary, true-north orientation (±1.5°) and per-edge exposure. The NW edge takes the summer sunset and the shamal wind.</figcaption>
+        </figure>
+        <div class="table-scroll facts" style="margin-top:0">
+          <table>
+            <tbody>
+              <tr><th scope="row">Area</th><td>14,841 m², within 1% of the brief's 15,000 m²</td></tr>
+              <tr><th scope="row">Shape</th><td>Rectangle: 166.0 m (NE) · 163.8 m (SW) · 87.5 m (NW) · 91.8 m (SE)</td></tr>
+              <tr><th scope="row">Orientation</th><td>True north from an OpenStreetMap cross-match, ±1.5°</td></tr>
+              <tr><th scope="row">Trees</th><td>74 surveyed: 62 kept, 12 flagged for likely removal</td></tr>
+              <tr><th scope="row">Neighbours</th><td>Mosque (SW, 89 m) · Physiotherapy &amp; rehab centre (SE, 46 m) · School (S corner) · Shopping centre: <em>left unresolved rather than guessed</em></td></tr>
+              <tr><th scope="row">Climate</th><td>Hot desert: 40–49 °C summer highs, NW shamal wind, 9–10.5 hours of sun a day</td></tr>
+              <tr><th scope="row">Community signal</th><td>A public review reported courts restricted to nearby residents only, answered in the activation strategy</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="concept">
+    <div class="wrap">
+      <div class="kicker">2 · Design vision</div>
+      <h2>Three concepts, scored against the same verified constraints</h2>
+      <p class="intro">"The Threshold Park" treats each edge as a threshold between the park and a different part of the neighbourhood's day. Two common alternatives were generated from the same geometry and scored honestly; one of their strengths was kept.</p>
+      <div class="concepts">
+        <article class="concept">
+          <img src="assets/img/alt-central-spine.jpg" alt="Alternative A, Central Spine: symmetric axial layout with mirrored programme" loading="lazy" width="369" height="570">
+          <div class="body">
+            <h3>A · Central Spine</h3>
+            <div class="score"><div class="bar"><i style="width:50%"></i></div>15 / 30</div>
+            <p>Conventional and symmetric. Courts land against the mosque-facing edge with no buffer, and programme is mirrored onto the harshest edge.</p>
+          </div>
+        </article>
+        <article class="concept">
+          <img src="assets/img/alt-concentric-core.jpg" alt="Alternative B, Concentric Core: activity rings radiating from a central plaza" loading="lazy" width="385" height="570">
+          <div class="body">
+            <h3>B · Concentric Core</h3>
+            <div class="score"><div class="bar"><i style="width:43%"></i></div>13 / 30</div>
+            <p>Its continuous perimeter loop is a real strength, <strong>adopted</strong> into the final design. But courts still touch the mosque edge, and circles waste a rectangular site.</p>
+          </div>
+        </article>
+        <article class="concept chosen">
+          <img src="assets/img/concept-zones.jpg" alt="Chosen concept, The Threshold Park: five zones derived from orientation and exposure" loading="lazy" width="393" height="622">
+          <div class="body">
+            <h3>The Threshold Park <span class="badge">chosen</span></h3>
+            <div class="score"><div class="bar"><i style="width:100%"></i></div>30 / 30</div>
+            <p>Derived directly from the confirmed constraints the alternatives were scored on.</p>
+          </div>
+        </article>
+      </div>
+      <div class="card" style="margin-top:24px">
+        <h3>Five guiding principles</h3>
+        <ul class="clean" style="margin-top:14px">
+          <li>Orient to reality, not convention.</li>
+          <li>Design for the neighbours who are already there.</li>
+          <li>Fix the existing court-access equity problem instead of inheriting it.</li>
+          <li>Treat shade as structure, not decoration.</li>
+          <li>Default to accessibility instead of retrofitting it.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="masterplan">
+    <div class="wrap">
+      <div class="kicker">3 · Spatial organisation</div>
+      <h2>Preliminary masterplan</h2>
+      <div class="zones">
+        <div class="zone" style="--c:#d9a441"><small>SE</small><h3>Arrival Commons</h3><p>Sheltered entrance plaza, gateway and drop-off, closest to the school and the rehab centre.</p></div>
+        <div class="zone" style="--c:#6aa07f"><small>NE</small><h3>Shaded Promenade</h3><p>3 m jogging and walking path under five shade canopies, with nature play.</p></div>
+        <div class="zone" style="--c:#2f6b4f"><small>Centre</small><h3>Central Green Commons</h3><p>Toddler (200 m²) and junior (300 m²) playgrounds, event lawn, picnic grove, plaza.</p></div>
+        <div class="zone" style="--c:#c4674f"><small>SW</small><h3>Active Edge</h3><p>Graduated: quiet turf facing the mosque → shaded seating → padel and FIBA 3x3 courts.</p></div>
+        <div class="zone" style="--c:#4c6b5a"><small>NW</small><h3>Buffer Grove</h3><p>Windbreak planting against the harshest edge, restroom and a service gate.</p></div>
+      </div>
+      <div class="grid2">
+        <figure>
+          <img src="assets/img/masterplan.jpg" alt="Preliminary design masterplan with 20 numbered elements, the accessible path loop, shade canopies and the existing trees" loading="lazy" width="1488" height="1449">
+          <figcaption>Schematic preliminary design, not construction-ready.</figcaption>
+        </figure>
+        <div style="display:grid;gap:16px">
+          <div class="card">
+            <h3>Land use, reconciled to 14,841 m²</h3>
+            <div class="landuse" role="img" aria-label="Land use: 10% perimeter setback, 14% hard surface, 76% soft landscape">
+              <div style="width:10%;background:#a29a86">10%</div>
+              <div style="width:14%;background:#c4674f">14%</div>
+              <div style="width:76%;background:#2f6b4f">76% soft landscape</div>
+            </div>
+            <p class="note">3 m perimeter setback · hard surface and structures · lawn, planting and buffer.</p>
+          </div>
+          <div class="card">
+            <h3>Accessible by default</h3>
+            <p class="note" style="margin-top:8px">A 340.2 m level loop plus 7 spurs (397.9 m in total) reaches every element, both playgrounds and the restroom included. Each connection was re-checked in the geometry, endpoint by endpoint.</p>
+          </div>
+          <div class="card">
+            <h3>A compliance gap, found and closed</h3>
+            <p class="note" style="margin-top:8px">Research for the materials palette showed Dubai Municipality requires 70–80% shade over active play areas. The masterplan had 0%. Two canopies sized to the requirement now give <strong>76.5%</strong> (toddler) and <strong>73.7%</strong> (junior), verified by polygon clipping.</p>
+          </div>
+          <div class="card">
+            <h3>Indicative budget check</h3>
+            <p class="note" style="margin-top:8px">Public UAE market rates applied to the confirmed quantities give <strong>AED 3.3M–7.5M</strong> for the priced scope, 9–22% of the AED 35M budget. It's a floor, not a tender figure: walls, full electrical, drainage and canopy engineering are not priced.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sections-fig">
+        <h3 style="margin-top:12px">Key sections</h3>
+        <figure><img src="assets/img/section-a.jpg" alt="Section A: Arrival to Central Commons to Buffer Grove" loading="lazy" width="1438" height="184"></figure>
+        <figure><img src="assets/img/section-b.jpg" alt="Section B: Active Edge, from the mosque-facing buffer to the courts" loading="lazy" width="1438" height="156"></figure>
+        <figure><img src="assets/img/section-c.jpg" alt="Section C: the Shaded Promenade canopy rhythm" loading="lazy" width="1431" height="163">
+          <figcaption>Flat ground confirmed against the CAD survey (an elevation-API step was identified as a data artefact). Heights cited from FIP (padel), EN 1176/1177 (play) and FIBA 3x3.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="kicker">4 · Experience &amp; activation</div>
+      <h2>Designed for the people already there</h2>
+      <p class="intro">Renders were produced from a written grounding brief (real species, real materials, real dimensions) and each was checked against the masterplan before use. They are illustrative, not construction drawings.</p>
+      <div class="gallery">
+        <figure><img src="assets/img/arrival-commons.jpg" alt="Arrival Commons: a wheelchair user and companion on the same level route as every visitor" loading="lazy" width="1140" height="622"><figcaption>Arrival Commons (SE): one level, unobstructed route for everyone.</figcaption></figure>
+        <figure><img src="assets/img/shaded-promenade.jpg" alt="Shaded Promenade: jogging path under tensioned shade sails" loading="lazy" width="1375" height="750"><figcaption>Shaded Promenade (NE): shade treated as structure.</figcaption></figure>
+        <figure><img src="assets/img/playground.jpg" alt="Playground under its dedicated shade canopy" loading="lazy" width="1346" height="734"><figcaption>Playgrounds under their compliance canopies.</figcaption></figure>
+        <figure><img src="assets/img/site-overview.jpg" alt="Full-site overview with numbered zones" loading="lazy" width="1438" height="784"><figcaption>Full-site overview, regenerated after the first version drifted from the confirmed geometry.</figcaption></figure>
+        <figure class="wide"><img src="assets/img/active-edge.jpg" alt="Panorama of the SW Active Edge: quiet turf buffer, shaded seating, padel court and 3x3 basketball" loading="lazy" width="1146" height="625"><figcaption>Active Edge (SW): intensity rises gradually away from the mosque.</figcaption></figure>
+      </div>
+
+      <h3 style="margin-top:40px">Five personas, five real routes</h3>
+      <div class="personas">
+        <div class="persona"><b>Amina, 12</b><small>Student</small><p>From school via the Arrival Plaza and Promenade to the courts, weekday afternoons.</p></div>
+        <div class="persona"><b>Rashid, 68</b><small>Rehab outpatient</small><p>46 m from the rehab centre; early-morning therapeutic walks on the level, shaded loop.</p></div>
+        <div class="persona"><b>Fatima, 34</b><small>Parent</small><p>To the shade-compliant toddler and junior playgrounds, then the picnic grove.</p></div>
+        <div class="persona"><b>Yusuf, 24</b><small>Informal athlete</small><p>Straight to the padel and basketball courts on the Active Edge.</p></div>
+        <div class="persona"><b>Mariam, 45</b><small>Worshipper</small><p>Near the mosque: the quiet turf buffer keeps prayer times calm by design.</p></div>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Fair court access</h3>
+          <p class="note" style="margin-top:8px">The reported "residents only" rule is answered with a published access policy, time blocks instead of identity blocks, and an optional transparent booking display, proposed for operations, not claimed as built.</p>
+        </div>
+        <div class="card">
+          <h3>Materials &amp; sustainability</h3>
+          <p class="note" style="margin-top:8px">Ghaf, Sidr, Neem and Samar trees; light, permeable pavers; light EPDM play surfacing; real irrigated turf (artificial turf reaches 60–80 °C); recycled-water irrigation; 84% of trees kept. Al Sa'fat is applied only to the restroom, the one building it actually governs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ai">
+    <div class="wrap">
+      <div class="kicker">5 · AI methodology</div>
+      <h2>Every AI output treated as a claim to verify</h2>
+      <p class="intro">The competition's premise is that AI and data can make a design more defensible. The value here came less from generating faster than from cross-checking outputs against each other and against the raw geometry.</p>
+      <div class="tags">
+        <span class="tag ok">CONFIRMED: verified against source data</span>
+        <span class="tag inf">INFERRED: reasoned, not independently verified</span>
+        <span class="tag gap">GAP: missing, flagged instead of filled</span>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Tool</th><th scope="col">Role</th></tr></thead>
+          <tbody>
+            <tr><td>Claude</td><td>Strategy, narrative, spatial and data reasoning, independent verification, compiling the deliverables</td></tr>
+            <tr><td>Claude Code</td><td>DWG/DXF parsing, geometry, OpenStreetMap queries, GIS analysis, layout generation</td></tr>
+            <tr><td>Gemini Pro / Nano Banana</td><td>Renders, masterplan visualisation, materials mood boards</td></tr>
+            <tr><td>GPT Pro</td><td>Critique and proofreading only</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:36px">Seven real errors caught before submission</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Issue</th><th scope="col">How it was caught</th></tr></thead>
+          <tbody>
+            <tr><td>Three ambiguous boundary tracings in the CAD file</td><td>Pixel analysis matched a walkability circle from the municipality's own locator map</td></tr>
+            <tr><td>Setback strip mislabelled (~1,139 m² vs 1,488.6 m²)</td><td>Independent polygon-inset recalculation</td></tr>
+            <tr><td>Three accessible path spurs silently dropped from the export</td><td>The same total differed across three output files; connectivity then re-derived from geometry</td></tr>
+            <tr><td>Padel side-wall height cited as ~1 m (really ~3 m)</td><td>Checked against several FIP-derived sources</td></tr>
+            <tr><td>0% playground shade vs a 70–80% requirement</td><td>Cross-checking one deliverable against an earlier "finished" one</td></tr>
+            <tr><td>US playground standard (CPSC) cited instead of EN 1176/1177</td><td>Verified against standards recognised by DM, Trakhees and KHDA</td></tr>
+            <tr><td>Overview render with rounded corners and garbled legend</td><td>Visual QA against the confirmed rectangular geometry</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="margin-top:24px">
+        <h3>Open items, carried forward honestly</h3>
+        <ul class="clean" style="margin-top:14px">
+          <li>The "shopping centre" neighbour was never identified, after two independent searches.</li>
+          <li>No vehicle access at the NW gate: a 170 m cart haul for waste and maintenance.</li>
+          <li>Irrigation water budget and solar-PV feasibility need a specialist engineer.</li>
+          <li>Tree conflicts are point-based; an arborist survey could lower the 12 removals.</li>
+          <li>Playground size is a deliberate trade-off against the brief's "destination playground" wording.</li>
+        </ul>
+      </div>
+
+      <figure style="margin-top:28px">
+        <img src="assets/img/presentation-board.jpg" alt="Presentation board summarising the concept, masterplan and key figures" loading="lazy" width="1437" height="1016">
+        <figcaption>Presentation board from the complete design report.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="deliverables">
+    <div class="wrap">
+      <div class="kicker">Submission</div>
+      <h2>The deliverables</h2>
+      <p class="intro">The full submission, as sent. Every figure on this page comes from these documents.</p>
+      <div class="docs">
+        <a href="deliverables/01-site-analysis-and-human-centric-research.pdf"><span class="n">1</span>Site Analysis &amp; Human-Centric Research<span class="meta">PDF · 8 p</span></a>
+        <a href="deliverables/02-design-narrative-and-concept.pdf"><span class="n">2</span>Design Narrative &amp; Concept<span class="meta">PDF · 6 p</span></a>
+        <a href="deliverables/03-concept-plans-and-spatial-organization-diagrams.pdf"><span class="n">3</span>Concept Plans &amp; Spatial Organization<span class="meta">PDF · 5 p</span></a>
+        <a href="deliverables/04-neighborhood-park-preliminary-design-masterplan.pdf"><span class="n">4</span>Preliminary Design Masterplan<span class="meta">PDF · 6 p</span></a>
+        <a href="deliverables/05-key-sections-and-elevations.pdf"><span class="n">5</span>Key Sections &amp; Elevations<span class="meta">PDF · 4 p</span></a>
+        <a href="deliverables/06-3d-and-spatial-visualizations.pdf"><span class="n">6</span>3D &amp; Spatial Visualizations<span class="meta">PDF · 5 p</span></a>
+        <a href="deliverables/07-material-and-landscape-palette.pdf"><span class="n">7</span>Material &amp; Landscape Palette<span class="meta">PDF · 4 p</span></a>
+        <a href="deliverables/08-user-experience-and-activation-strategy.pdf"><span class="n">8</span>User Experience &amp; Activation<span class="meta">PDF · 4 p</span></a>
+        <a href="deliverables/09-sustainability-concept-and-strategy.pdf"><span class="n">9</span>Sustainability Concept &amp; Strategy<span class="meta">PDF · 4 p</span></a>
+        <a href="deliverables/10-ai-methodology-report.pdf"><span class="n">10</span>AI Methodology Report<span class="meta">PDF · 6 p</span></a>
+        <a href="deliverables/11-complete-design-report.pdf"><span class="n">11</span>Complete Design Report<span class="meta">PDF · 8 p</span></a>
+        <a href="assets/video/concept-animation.mp4"><span class="n">12</span>Concept animation<span class="meta">MP4 · 1 min 40</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Concept and preliminary design by <a href="https://assim-ben-ahmed.github.io/portfolio/">Assim Ben Ahmed</a> for Dubai Municipality's AI-Powered Park Design Challenge (2026). Independent competition entry: not produced, endorsed or published by Dubai Municipality.</p>
+    <p>Renders are AI-generated (Gemini) and illustrative. Plans are schematic and not construction-ready.</p>
+  </div>
+</footer>
+</body>
+</html>
